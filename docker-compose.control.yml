@@ -12,9 +12,9 @@ services:
     build:
       context: ./control
     environment:
-      PGDATA17: /var/lib/postgresql/data
+      PGDATA: /var/lib/postgresql/data
     volumes:
-      - "${PGDATA:-pgdata17}:/var/lib/postgresql/data"
+      - "${PGDATA:-pgdata17n}:/var/lib/postgresql/data"
       - "./control:/control"
     entrypoint: ["/control/upgrade/entrypoint.sh"]
   backup:
@@ -22,10 +22,10 @@ services:
     build:
       context: ./control
     environment:
-      PGDATA17: /var/lib/postgresql/data
+      PGDATA: /var/lib/postgresql/data
       OPDATA: /var/openproject/assets
     volumes:
-      - "${PGDATA:-pgdata17}:/var/lib/postgresql/data"
+      - "${PGDATA:-pgdata17n}:/var/lib/postgresql/data"
       - "${OPDATA:-opdata}:/var/openproject/assets"
       - "./backups:/backups"
       - "./control:/control"
