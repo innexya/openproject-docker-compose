@@ -47,7 +47,7 @@ services:
     volumes:
       - "${PGDATA:-pgdata17}:/var/lib/postgresql/data"
     environment:
-      POSTGRES_USER: openproject
+      POSTGRES_USER: ${POSTGRES_USER:-openproject}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-p4assword}
       POSTGRES_DB: openproject
     healthcheck:
@@ -92,7 +92,7 @@ services:
     labels:
       - autoheal=true
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080${OPENPROJECT_RAILS__RELATIVE__URL__ROOT:-}/health_checks/default"]
+      test: ["CMD", "curl", "-f", "http://10.50.61.44:8080${OPENPROJECT_RAILS__RELATIVE__URL__ROOT:-}/health_checks/default"]
       interval: 10s
       timeout: 3s
       retries: 3
