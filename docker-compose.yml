@@ -45,7 +45,7 @@ services:
     <<: *restart_policy
     stop_grace_period: "3s"
     volumes:
-      - "${PGDATA:-pgdata17:/var/lib/postgresql/data}"
+      - "${PGDATA:-pgdata17:}/var/lib/postgresql/data"
     environment:
       POSTGRES_USER: openproject
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-p4assword}
