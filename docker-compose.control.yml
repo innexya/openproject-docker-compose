@@ -12,7 +12,7 @@ services:
     build:
       context: ./control
     environment:
-      PGDATA: pgdata17/var/lib/postgresql/data
+      PGDATA17: /var/lib/postgresql/data
     volumes:
       - "${PGDATA:-pgdata17}:/var/lib/postgresql/data"
       - "./control:/control"
@@ -22,7 +22,7 @@ services:
     build:
       context: ./control
     environment:
-      PGDATA: pgdata17/var/lib/postgresql/data
+      PGDATA17: /var/lib/postgresql/data
       OPDATA: /var/openproject/assets
     volumes:
       - "${PGDATA:-pgdata17}:/var/lib/postgresql/data"
