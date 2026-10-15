@@ -4,6 +4,7 @@ networks:
 
 volumes:
   pgdata:
+  pgdata17:
   opdata:
 
 x-op-restart-policy: &restart_policy
@@ -39,12 +40,14 @@ services:
     #
     # Refer to the docs on how to upgrade to postgres 17 before then:
     #   https://www.openproject.org/docs/installation-and-operations/misc/migration-to-postgresql17/
-    image: postgres:${POSTGRES_VERSION:-13}
+    image: postgres:${POSTGRES_VERSION:-17}
+    restart: unless-stopped
     <<: *restart_policy
     stop_grace_period: "3s"
     volumes:
-      - "${PGDATA:-pgdata}:/var/lib/postgresql/data"
+      - "${PGDATA:-pgdata17}:/var/lib/postgresql/data"
     environment:
+       POSTGRES_USER: openproject
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-p4ssw0rd}
       POSTGRES_DB: openproject
     networks:
