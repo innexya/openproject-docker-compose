@@ -48,7 +48,7 @@ services:
       - "${PGDATA:-pgdata17}:/var/lib/postgresql/data"
     environment:
       POSTGRES_USER: openproject
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: openproject
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U openproject -d openproject"]
